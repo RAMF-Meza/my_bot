@@ -1,0 +1,1087 @@
+<sdf version='1.7'>
+  <world name='default'>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <contact>
+              <collide_bitmask>65535</collide_bitmask>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <physics type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <wind/>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <model name='FirePullStation'>
+      <link name='body'>
+        <pose>0 0 0 0 -0 0</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/firepullstation/1/files/meshes/FirePullStation.glb</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/firepullstation/1/files/meshes/FirePullStation.glb</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <self_collide>0</self_collide>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+          <mass>1</mass>
+        </inertial>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>-5.48065 2.9727 0 0 -0 0</pose>
+    </model>
+    <model name='ground_station'>
+      <static>1</static>
+      <frame name='tent::__model__' attached_to='tent::base_link'>
+        <pose relative_to='__model__'>0 0 0 0 -0 0</pose>
+      </frame>
+      <static>1</static>
+      <link name='tent::base_link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>mesh/tent.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <pose>0 0 1.5 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>3 3 3</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <pose relative_to='tent::__model__'>0 0 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <frame name='table_a::__model__' attached_to='table_a::base_link'>
+        <pose relative_to='__model__'>0.5 0.9 0 0 -0 0</pose>
+      </frame>
+      <static>1</static>
+      <link name='table_a::base_link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>mesh/foldable_table.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <pose>0 0 0.35 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.82 0.74 0.67</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <pose relative_to='table_a::__model__'>0 0 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <frame name='table_b::__model__' attached_to='table_b::base_link'>
+        <pose relative_to='__model__'>1 -0.5 0 0 -0 1.57</pose>
+      </frame>
+      <static>1</static>
+      <link name='table_b::base_link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>mesh/foldable_table.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <pose>0 0 0.35 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.82 0.74 0.67</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <pose relative_to='table_b::__model__'>0 0 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <frame name='chair_a::__model__' attached_to='chair_a::base_link'>
+        <pose relative_to='__model__'>0.2 0 0 0 -0 1.57</pose>
+      </frame>
+      <static>1</static>
+      <link name='chair_a::base_link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <scale>0.1 0.1 0.1</scale>
+              <uri>mesh/foldable_chair.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <pose>0 0.05 0.4 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.5 0.5 0.8</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <pose relative_to='chair_a::__model__'>0 0 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <frame name='chair_b::__model__' attached_to='chair_b::base_link'>
+        <pose relative_to='__model__'>0.2 -0.8 0 0 -0 1.57</pose>
+      </frame>
+      <static>1</static>
+      <link name='chair_b::base_link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <scale>0.1 0.1 0.1</scale>
+              <uri>mesh/foldable_chair.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <pose>0 0.05 0.4 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.5 0.5 0.8</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <pose relative_to='chair_b::__model__'>0 0 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <frame name='chair_c::__model__' attached_to='chair_c::base_link'>
+        <pose relative_to='__model__'>-0.6 0.8 0 0 -0 1.57</pose>
+      </frame>
+      <static>1</static>
+      <link name='chair_c::base_link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <scale>0.1 0.1 0.1</scale>
+              <uri>mesh/foldable_chair.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <pose>0 0.05 0.4 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.5 0.5 0.8</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <pose relative_to='chair_c::__model__'>0 0 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>-4.97464 1.03965 0 0 -0 0</pose>
+    </model>
+    <model name='warehouse'>
+      <pose>-20.2912 18.3911 0 0 -0 0</pose>
+      <self_collide>0</self_collide>
+      <link name='warehouse_base'>
+        <pose>0 0 0 0 -0 0</pose>
+        <collision name='warehouse_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/ramf30/.ignition/fuel/fuel.ignitionrobotics.org/openrobotics/models/warehouse/3/meshes/warehouse_colision.stl</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='warehouse_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/ramf30/.ignition/fuel/fuel.ignitionrobotics.org/openrobotics/models/warehouse/3/meshes/warehouse.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='drop_area_visual'>
+          <pose>0 0 0.101 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/ramf30/.ignition/fuel/fuel.ignitionrobotics.org/openrobotics/models/warehouse/3/meshes/warehouse.dae</uri>
+              <submesh>
+                <name>drop1</name>
+                <center>1</center>
+              </submesh>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name='x1'>
+      <enable_wind>1</enable_wind>
+      <static>0</static>
+      <link name='base'>
+        <inertial>
+          <pose>-0.00065 -0.085 0.062 0 -0 0</pose>
+          <mass>46.034</mass>
+          <inertia>
+            <ixx>0.613201</ixx>
+            <ixy>-0.0236401</ixy>
+            <ixz>-0.1197</ixz>
+            <iyy>1.7496</iyy>
+            <iyz>-0.00154411</iyz>
+            <izz>2.0406</izz>
+          </inertia>
+        </inertial>
+        <collision name='base_collision'>
+          <pose>0 0 0.061875 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.9874 0.5709 0.12375</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='base_collision_1'>
+          <pose>0 0 0.185625 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.78992 0.5709 0.12375</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='top_plate_collision'>
+          <pose>0.0812 0 0.245 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/x1 ugv/4/files/meshes/top_plate.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='top_plate_collision_2'>
+          <pose>0.0812 0 0.245 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.32 0.41 0.09</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='base_visual'>
+          <pose>0 0 0 0 0 -3.14159</pose>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/x1 ugv/4/files/meshes/chassis.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='center_left_headlight_visual'>
+          <pose>0.485766 0.0844 0.124431 0 0 -3.14159</pose>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/x1 ugv/4/files/meshes/headlight.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='center_right_headlight_visual'>
+          <pose>0.485766 -0.0844 0.124431 0 0 -3.14159</pose>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/x1 ugv/4/files/meshes/headlight.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='left_headlight_visual'>
+          <pose>0.461459 0.216803 0.124431 0 0 -3.14159</pose>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/x1 ugv/4/files/meshes/headlight.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='marker_visual_1'>
+          <pose>0.066047 0.212211 0.209188 -3.14159 1.57079 -1.60259</pose>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/x1 ugv/4/files/meshes/led.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='marker_visual_2'>
+          <pose>-0.066047 0.212211 0.209188 -3.14159 1.57079 -1.60259</pose>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/x1 ugv/4/files/meshes/led.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='marker_visual_3'>
+          <pose>-0.42493 0 0.209188 3.14159 1.57079 7e-06</pose>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/x1 ugv/4/files/meshes/led.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='marker_visual_4'>
+          <pose>-0.42493 0.13619 0.209188 3.14159 1.57079 7e-06</pose>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/x1 ugv/4/files/meshes/led.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='marker_visual_5'>
+          <pose>-0.42493 -0.13619 0.209188 3.14159 1.57079 7e-06</pose>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/x1 ugv/4/files/meshes/led.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='right_headlight_visual'>
+          <pose>0.461459 -0.216803 0.124431 0 0 -3.14159</pose>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/x1 ugv/4/files/meshes/headlight.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='marker_visual_6'>
+          <pose>0.066047 -0.212211 0.209188 3.14159 1.57079 1.60259</pose>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/x1 ugv/4/files/meshes/led.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='marker_visual_7'>
+          <pose>-0.066047 -0.212211 0.209188 3.14159 1.57079 1.60259</pose>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/x1 ugv/4/files/meshes/led.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='top_plate_visual'>
+          <pose>0.0812 0 0.245 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/x1 ugv/4/files/meshes/top_plate.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <light name='left_light_source' type='spot'>
+          <pose>0.514147 0.216803 0.18 3.14159 1.56859 0</pose>
+          <attenuation>
+            <range>50</range>
+            <linear>0</linear>
+            <constant>0.1</constant>
+            <quadratic>0.0025</quadratic>
+          </attenuation>
+          <diffuse>0.8 0.8 0.5 1</diffuse>
+          <specular>0.8 0.8 0.5 1</specular>
+          <spot>
+            <inner_angle>1</inner_angle>
+            <outer_angle>1.1</outer_angle>
+            <falloff>1</falloff>
+          </spot>
+          <direction>0 0 -1</direction>
+          <cast_shadows>1</cast_shadows>
+        </light>
+        <light name='center_left_light' type='spot'>
+          <pose>0.538 0.0844 0.18 3.14159 1.56859 0</pose>
+          <attenuation>
+            <range>50</range>
+            <linear>0</linear>
+            <constant>0.1</constant>
+            <quadratic>0.0025</quadratic>
+          </attenuation>
+          <diffuse>0.8 0.8 0.5 1</diffuse>
+          <specular>0.8 0.8 0.5 1</specular>
+          <spot>
+            <inner_angle>1</inner_angle>
+            <outer_angle>1.1</outer_angle>
+            <falloff>1</falloff>
+          </spot>
+          <direction>0 0 -1</direction>
+          <cast_shadows>1</cast_shadows>
+        </light>
+        <light name='center_right_light' type='spot'>
+          <pose>0.538 -0.0844 0.18 3.14159 1.56859 0</pose>
+          <attenuation>
+            <range>50</range>
+            <linear>0</linear>
+            <constant>0.1</constant>
+            <quadratic>0.0025</quadratic>
+          </attenuation>
+          <diffuse>0.8 0.8 0.5 1</diffuse>
+          <specular>0.8 0.8 0.5 1</specular>
+          <spot>
+            <inner_angle>1</inner_angle>
+            <outer_angle>1.1</outer_angle>
+            <falloff>1</falloff>
+          </spot>
+          <direction>0 0 -1</direction>
+          <cast_shadows>1</cast_shadows>
+        </light>
+        <light name='right_light_source' type='spot'>
+          <pose>0.514147 -0.216803 0.18 3.14159 1.56859 0</pose>
+          <attenuation>
+            <range>50</range>
+            <linear>0</linear>
+            <constant>0.1</constant>
+            <quadratic>0.0025</quadratic>
+          </attenuation>
+          <diffuse>0.8 0.8 0.5 1</diffuse>
+          <specular>0.8 0.8 0.5 1</specular>
+          <spot>
+            <inner_angle>1</inner_angle>
+            <outer_angle>1.1</outer_angle>
+            <falloff>1</falloff>
+          </spot>
+          <direction>0 0 -1</direction>
+          <cast_shadows>1</cast_shadows>
+        </light>
+        <self_collide>0</self_collide>
+        <enable_wind>1</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='front_left_wheel'>
+        <pose>0.256 0.2854 0.03282 0 -0 0</pose>
+        <inertial>
+          <mass>2.637</mass>
+          <inertia>
+            <ixx>0.02467</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.04411</iyy>
+            <iyz>0</iyz>
+            <izz>0.02467</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <pose>0 0 0 -1.57079 0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.1143</length>
+              <radius>0.1651</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.1</mu>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/x1 ugv/4/files/meshes/wheel.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>1</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='front_left_wheel_joint' type='revolute'>
+        <parent>base</parent>
+        <child>front_left_wheel</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1.79769e+308</lower>
+            <upper>1.79769e+308</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='front_right_wheel'>
+        <pose>0.256 -0.2854 0.03282 0 -0 0</pose>
+        <inertial>
+          <mass>2.637</mass>
+          <inertia>
+            <ixx>0.02467</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.04411</iyy>
+            <iyz>0</iyz>
+            <izz>0.02467</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <pose>0 0 0 -1.57079 0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.1143</length>
+              <radius>0.1651</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.1</mu>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/x1 ugv/4/files/meshes/wheel.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>1</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='front_right_wheel_joint' type='revolute'>
+        <child>front_right_wheel</child>
+        <parent>base</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1.79769e+308</lower>
+            <upper>1.79769e+308</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='rear_left_wheel'>
+        <pose>-0.256 0.2854 0.03282 0 -0 0</pose>
+        <inertial>
+          <mass>2.637</mass>
+          <inertia>
+            <ixx>0.02467</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.04411</iyy>
+            <iyz>0</iyz>
+            <izz>0.02467</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <pose>0 0 0 -1.57079 0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.1143</length>
+              <radius>0.1651</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.1</mu>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/x1 ugv/4/files/meshes/wheel.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>1</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='rear_left_wheel_joint' type='revolute'>
+        <parent>base</parent>
+        <child>rear_left_wheel</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1.79769e+308</lower>
+            <upper>1.79769e+308</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='rear_right_wheel'>
+        <pose>-0.256 -0.2854 0.03282 0 -0 0</pose>
+        <inertial>
+          <mass>2.637</mass>
+          <inertia>
+            <ixx>0.02467</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.04411</iyy>
+            <iyz>0</iyz>
+            <izz>0.02467</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <pose>0 0 0 -1.57079 0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.1143</length>
+              <radius>0.1651</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.1</mu>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/x1 ugv/4/files/meshes/wheel.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>1</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='rear_right_wheel_joint' type='revolute'>
+        <child>rear_right_wheel</child>
+        <parent>base</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1.79769e+308</lower>
+            <upper>1.79769e+308</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <pose>-0.44285 1.49622 0 0 -0 0</pose>
+    </model>
+    <state world_name='default'>
+      <sim_time>2414 776000000</sim_time>
+      <real_time>2418 860709386</real_time>
+      <wall_time>1680639187 545550156</wall_time>
+      <iterations>2414776</iterations>
+      <model name='FirePullStation'>
+        <pose>-5.48065 2.9727 -8.87974e+06 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='body'>
+          <pose>-5.48065 2.9727 -8.87974e+06 0 -0 0</pose>
+          <velocity>0 0 -13192.5 0 -0 0</velocity>
+          <acceleration>0 0 -9.8 0 -0 0</acceleration>
+          <wrench>0 0 -9.8 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='ground_plane'>
+        <pose>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>0 0 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='ground_station'>
+        <pose>-4.97464 1.03965 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='chair_a::base_link'>
+          <pose>-4.77464 1.03965 0 0 -0 1.57</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='chair_b::base_link'>
+          <pose>-4.77464 0.23965 0 0 -0 1.57</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='chair_c::base_link'>
+          <pose>-5.57464 1.83965 0 0 -0 1.57</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='table_a::base_link'>
+          <pose>-4.47464 1.93965 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='table_b::base_link'>
+          <pose>-3.97464 0.53965 0 0 -0 1.57</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='tent::base_link'>
+          <pose>-4.97464 1.03965 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='warehouse'>
+        <pose>-20.2912 18.3911 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='warehouse_base'>
+          <pose>-20.2912 18.3911 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='x1'>
+        <pose>-0.462317 1.7373 0.132273 3.1e-05 -0 0.090456</pose>
+        <scale>1 1 1</scale>
+        <link name='base'>
+          <pose>-0.462317 1.7373 0.132273 3.1e-05 -0 0.090456</pose>
+          <velocity>-0.000482 0.00346 -0.002028 0.051373 0.00466 0.001925</velocity>
+          <acceleration>0.224993 -1.1506 -3.37348 0.72737 -1.5107 -1.20725</acceleration>
+          <wrench>10.3573 -52.9668 -155.295 0 -0 0</wrench>
+        </link>
+        <link name='front_left_wheel'>
+          <pose>-0.233144 2.04466 0.165102 3.1e-05 -0.261485 0.090448</pose>
+          <velocity>-0.000921 0.002215 0.012678 0.052317 -0.004913 0.001928</velocity>
+          <acceleration>-0.701405 1.38443 23.6317 -2.42096 -0.356938 1.87366</acceleration>
+          <wrench>-1.8496 3.65075 62.3169 0 -0 0</wrench>
+        </link>
+        <link name='front_right_wheel'>
+          <pose>-0.181582 1.47619 0.165084 2.7e-05 0.067315 0.090458</pose>
+          <velocity>0.000173 0.002316 -0.016726 0.052361 0.005405 0.001887</velocity>
+          <acceleration>0.36336 1.47976 -17.9884 0.286374 -0.046716 -1.25926</acceleration>
+          <wrench>0.95818 3.90212 -47.4354 0 -0 0</wrench>
+        </link>
+        <link name='rear_left_wheel'>
+          <pose>-0.743051 1.99841 0.165102 3.1e-05 -0.252151 0.090448</pose>
+          <velocity>-0.000832 0.001232 0.012678 0.05227 -0.004374 0.001928</velocity>
+          <acceleration>-0.614698 0.429655 23.6318 -2.43133 0.224122 1.87426</acceleration>
+          <wrench>-1.62096 1.133 62.3171 0 -0 0</wrench>
+        </link>
+        <link name='rear_right_wheel'>
+          <pose>-0.691489 1.42994 0.165084 2.7e-05 0.066405 0.090458</pose>
+          <velocity>0.000262 0.001335 -0.016726 0.05236 0.005421 0.001886</velocity>
+          <acceleration>0.449977 0.524705 -17.9882 0.286489 -0.046731 -1.25909</acceleration>
+          <wrench>1.18659 1.38365 -47.4348 0 -0 0</wrench>
+        </link>
+      </model>
+      <light name='sun'>
+        <pose>0 0 10 0 -0 0</pose>
+      </light>
+    </state>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>1.81602 2.98497 2.19474 -0 0.655643 -2.39499</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+  </world>
+</sdf>
